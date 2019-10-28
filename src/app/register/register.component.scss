@@ -1,0 +1,22 @@
+@import '../../partial';
+.form-group{
+    width: 100px;
+    min-width: 500px;
+}
+mat-hint{
+    color:$mat-warn-main!important;
+}
+
+  span.mat-button-wrapper {
+    color: $mat-warn-main!important;
+}
+simple-snack-bar span {
+    color:$mat-warn-main!important;
+}
+.wrap{
+    height: 80%;
+}
+mat-card.mat-card {
+    padding: 50px;
+    
+}

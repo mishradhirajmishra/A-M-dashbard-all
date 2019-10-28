@@ -1,0 +1,23 @@
+<div class="container" fxLayout="row" >
+    <div fxFlex="auto" class="header" fxLayoutAlign="space-around center" >
+      <h1 class="mat-display-2" >{{title}}</h1>
+     </div>
+    </div>
+<mat-divider></mat-divider>
+
+<div class="outer">
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap='8px'>
+    <mat-card fxFlex="auto" class="red" fxLayoutAlign="space-around center" >
+      <h1 class="mat-display-2" >Header</h1> </mat-card>
+    </div>
+  <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutGap='8px'>
+    <mat-card fxFlex="auto" class="red"> Red</mat-card>
+    <mat-card fxFlex.sm="25%" fxFlex="80%" fxFlex.xs="auto" class="green"> Green</mat-card>
+    <mat-card fxFlex.sm="25%" fxHide.xs  fxHide.md  fxHide.lg  class="yellow">only sm screen</mat-card>
+    <mat-card fxFlex="auto" class="pink">Pink</mat-card>
+  </div>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap='8px'>
+    <mat-card fxFlex="auto" class="pink">Footer</mat-card>
+  </div>
+
+</div>

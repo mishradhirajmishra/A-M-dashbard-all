@@ -1,0 +1,32 @@
+
+@import './partial';
+.active {
+  background-color:$mat-primary-main !important;
+  color: white !important;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.outer{
+  height: 100%;
+}
+.container{   
+padding: 4px;
+}
+.header{
+  color: #333;
+  font-size: 56px;
+  -webkit-text-stroke: 1px #282828;
+  text-shadow: 0px 4px 4px #282828;
+  font-family: 'Kalam', cursive;
+  margin-top: 0;
+  margin-bottom: 0;
+ 
+}
+div.header h1.mat-display-2 {
+  margin-bottom: 0px !important;
+}
+.w100{
+  width: 100%;
+}

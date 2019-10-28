@@ -1,0 +1,43 @@
+@import '../../../partial';
+.form-group{
+    width: 100px;
+    min-width: 500px;
+}
+mat-hint{
+    color: red !important;
+}
+.right{
+   float: right;
+}
+fieldset {
+    border-color: #d3d3d33d;;
+    border-radius: 5px;
+    min-width: 475px!important;
+}
+fieldset :hover{
+    border-color: $mat-primary-main;
+}
+.hint {
+    margin: 17px;
+}
+.time{
+    width: 30% !important;
+    margin-right: 30px;
+  }
+
+
+.del{
+    background-color: $mat-warn-main;
+    color: white;
+    padding: 15px;
+    float: right;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.add{
+    background-color: $mat-primary-main;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+}

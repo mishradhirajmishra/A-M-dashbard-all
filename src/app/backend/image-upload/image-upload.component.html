@@ -1,0 +1,35 @@
+<div class="container" fxLayout="row">
+    <div fxFlex="auto" class="header" fxLayoutAlign="space-around center">
+        <h1 class="mat-display-2">{{title}}</h1>
+    </div>
+</div>
+
+
+<div class="outer">
+    <div class="container" fxLayout="column" fxLayoutAlign="space-around center">
+        <mat-card>
+            <!-- {{tempForm.value |json}} -->
+            <form #tempForm="ngForm" (ngSubmit)="sendData(tempForm);tempForm.form.reset()">
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput id="name" class="form-control" type="text" name="username" #username="ngModel"
+                            ngModel required>
+                        <mat-hint *ngIf="username.touched && username.invalid">This field is required
+                        </mat-hint>
+                    </mat-form-field>
+                </p>
+                <fieldset class="form-group">
+                    <legend>Image</legend>
+                    <input class="form-control" type="file" name="image" required (change)="onChange($event)">
+                </fieldset>
+                <img *ngIf="url" class="img-fluid1 profile pointer" [src]="url" style="width:100%"> 
+                                <!-- ------------- -->
+                <button mat-flat-button color="primary" [disabled]="tempForm.form.invalid">Submit</button>
+                
+
+            </form>
+        </mat-card>
+    </div>
+
+</div>

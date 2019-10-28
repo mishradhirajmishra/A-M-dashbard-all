@@ -1,0 +1,174 @@
+<div class="container" fxLayout="row">
+    <div fxFlex="auto" class="header" fxLayoutAlign="space-around center">
+        <h1 class="mat-display-2">{{title}}</h1>
+    </div>
+</div>
+
+
+<div class="outer">
+    <div class="container" fxLayout="column" fxLayoutAlign="space-around center">
+        <mat-card>
+            <!-- {{tempForm.value |json}} -->
+            <form #tempForm="ngForm" (ngSubmit)="sendData(tempForm);tempForm.form.reset()">
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput id="name" class="form-control" type="text" name="username" #username="ngModel"
+                            ngModel required>
+                        <mat-hint *ngIf="username.touched && username.invalid">This field is required
+                        </mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput class="form-control" type="text" type="email" name="email" #email="ngModel"
+                            ngModel email required>
+                        <mat-hint *ngIf="email.touched && email?.errors?.required">This field is required
+                        </mat-hint>
+                        <mat-hint *ngIf="email.touched && email.errors && !email?.errors?.required">Invalid Email
+                        </mat-hint>
+                    </mat-form-field>
+                </p>
+
+                <p>  
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label >Password </mat-label>
+                        <input matInput appPasswordValidator2  class="form-control" type="password"  name="password" #password="ngModel" ngModel required>
+                        <mat-hint *ngIf="password.touched && password?.errors?.required"> This field is required</mat-hint>
+                    </mat-form-field>
+                </p>
+
+                <p> {{cpassword.errors |json}}
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label >Confirm Password</mat-label>
+                        <input matInput appPasswordValidator
+                             class="form-control" type="password" name="cpassword" #cpassword="ngModel" ngModel required>
+                        <mat-hint *ngIf="cpassword.touched && cpassword?.errors?.required ">This field is required
+                        </mat-hint>
+                        <mat-hint *ngIf="cpassword.touched && invalidPass && !cpassword?.errors?.required">Password must
+                            be
+                            equal</mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label>Url</mat-label>
+                        <input matInput appUrlValidate class="form-control" type="url" name="url" #url="ngModel" ngModel
+                            required>
+                        <mat-hint *ngIf="url.touched && url.errors?.required"> This field is required</mat-hint>
+                        <mat-hint *ngIf="url.touched && url?.errors?.urlErr && !url.errors?.required">Invalid url must
+                            be in https// ---.io formet</mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>
+
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label>Date of birth </mat-label>
+                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" class="form-control"
+                            name="dob" #dob="ngModel" ngModel required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-hint *ngIf="dob.touched && dob?.errors?.required"> This field is required</mat-hint>
+                        <mat-hint
+                            *ngIf="dob.touched && (dob?.errors?.matDatepickerMin || dob?.errors?.matDatepickerMax) && !dob?.errors?.required">
+                            Invalid Date
+                            Range </mat-hint>
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label for="category">Category</mat-label>
+                        <mat-select id="category" class="form-control" name="category" #category="ngModel" ngModel
+                            required>
+                            <mat-option value="">Select</mat-option>
+                            <mat-option value="GEN">General</mat-option>
+                            <mat-option value="OBC">OBC</mat-option>
+                            <mat-option value="SC">SC</mat-option>
+                            <mat-option value="ST">ST</mat-option>
+                        </mat-select>
+                        <mat-hint *ngIf="category.touched && category.invalid"> This field is required</mat-hint>
+                    </mat-form-field>
+                </p>
+                <fieldset class="form-group">
+                    <legend>Gender</legend>
+                    <mat-button-toggle-group #group="matButtonToggleGroup" class="right" name="gender" #gender="ngModel" ngModel required >
+                        <mat-button-toggle value="male" aria-label="Text align left"> Male </mat-button-toggle>
+                        <mat-button-toggle value="Female" aria-label="Text align left"> Female </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </fieldset>
+                <!-- ------------- -->
+                <br>
+                <br>
+                <ng-container ngModelGroup="hobby" appHobbyValidator #hobby="ngModelGroup">
+                    <fieldset class="form-group">
+                        <legend>Hobby</legend>
+                        <br> <span>Reading Book </span>
+                        <mat-slide-toggle class="right" name="reading_book" #r_b="ngModel" ngModel value="true">
+                        </mat-slide-toggle>
+                        <br><br><span> Watching Moove </span>
+                        <mat-slide-toggle class="right" name="watching_moove" #w_m="ngModel" ngModel value="true">
+                        </mat-slide-toggle>
+                        <br><br><span>Swimming </span>
+                        <mat-slide-toggle class="right" name="sweeming" #s="ngModel" ngModel value="true">
+                        </mat-slide-toggle>
+                    </fieldset>
+                    <mat-hint class="hint" *ngIf="hobby.dirty && hobby.errors?.invalidHobby"> Please sellect atleast one
+                        hobby</mat-hint>
+                </ng-container>
+                <!-- ------------- -->
+                <br> <br>
+                <ng-container ngModelGroup="time" appTimeValidator #time="ngModelGroup">
+                    <fieldset class="form-group">
+                        <legend>Time </legend>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Min</mat-label>
+                            <input matInput id="minTime" class="form-control" type="time" #minTime="ngModel"
+                                name="minTime" ngModel required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="right">
+                            <mat-label>max </mat-label>
+                            <input matInput id="maxTime" class="form-control" type="time" #maxTime="ngModel"
+                                name="maxTime" ngModel required>
+                        </mat-form-field>
+                    </fieldset>
+                    <mat-hint class="hint" *ngIf="minTime.dirty && maxTime.dirty && time.errors?.invalidTime">Invalid
+                        Time range</mat-hint>
+                </ng-container>
+                <br><br>
+                <fieldset class="form-group">
+                    <legend>Range</legend>
+                    <mat-slider thumbLabel tickInterval="100" name="range" color="primary" min="1" max="100" #range="ngModel" ngModel
+                        required>
+                    </mat-slider>
+                </fieldset>
+                <br>
+
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label for="my-input  matInput ">Color</mat-label>
+                        <input matInput id="my-input  matInput " class="form-control" #color="ngModel"
+                            ngModel name="color" type="color" required>
+                        <mat-hint *ngIf="color.touched && color.invalid"> This field   is required</mat-hint>
+                    </mat-form-field>
+                </p>
+                <!-- ------------- -->
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label for="about">About</mat-label>
+                        <textarea #about="ngModel" matInput class="form-control" id="about" class="form-control"
+                            name="about" ngModel required> </textarea>
+                        <mat-hint *ngIf="about.touched && about?.errors?.required">This field is required </mat-hint>
+                    </mat-form-field>
+                </p>
+                <!-- ------------- -->
+                <button mat-flat-button color="primary"
+                    [disabled]="tempForm.form.invalid || invalidPass || (dob?.value > maxDate || dob?.value < minDate) || (!r_b.value && !w_m.value && !s.value ) || (minTime.value >= maxTime.value)">Primary</button>
+
+
+            </form>
+        </mat-card>
+    </div>
+
+</div>

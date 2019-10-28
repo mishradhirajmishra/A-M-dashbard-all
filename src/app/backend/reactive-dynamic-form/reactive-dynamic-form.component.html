@@ -1,0 +1,101 @@
+<div class="container" fxLayout="row">
+    <div fxFlex="auto" class="header" fxLayoutAlign="space-around center">
+        <h1 class="mat-display-2">{{title}}</h1>
+    </div>
+</div>
+
+
+<div class="outer">
+    <div class="container" fxLayout="column" fxLayoutAlign="space-around center">
+        <mat-card>
+            <form [formGroup]="userProfile" (ngSubmit)="updateProfile()">
+                <!-- ................. -->
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput id="name" class="form-control" type="text" formControlName="username">
+                        <mat-hint *ngIf="username?.touched && username?.errors?.required">This field is required
+                        </mat-hint>
+                    </mat-form-field>
+                </p>
+                <!-- ................. -->
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label for="email">Email</mat-label>
+                        <input matInput id="email" type="email" class="form-control" formControlName="email"
+                            name="email">
+                        <mat-hint *ngIf="email?.touched && email?.errors?.required">This field is required </mat-hint>
+                        <mat-hint *ngIf="email?.touched && email?.invalid && !email?.errors?.required">Invalid Email
+                        </mat-hint>
+                    </mat-form-field>
+                </p>
+                <!-- ................. -->
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label for="password">Password</mat-label>
+                        <input matInput id="password" class="form-control" type="password" formControlName="password"
+                            name="password">
+                        <mat-hint *ngIf="password?.touched && password?.errors?.required">This field is required
+                        </mat-hint>
+                    </mat-form-field>
+                </p>
+                <!-- ................. -->
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label for="c-password">Confirm Password</mat-label>
+                        <input matInput id="c-password" class="form-control" type="password" formControlName="cpassword"
+                            name="cpassword">
+                        <mat-hint *ngIf="cpassword?.touched && cpassword?.errors?.required">This field is required
+                        </mat-hint>
+                        <mat-hint
+                            *ngIf="cpassword?.touched && (cpassword?.errors?.invalidPss) && !cpassword?.errors?.required ">
+                            Password must be equal</mat-hint>
+                    </mat-form-field>
+                </p>
+                <!-- ................. -->
+                <!-- ------------- -->
+                <br> <br>
+               
+                    <!-- ----------------------------------------------------------------------------------------------- -->
+                 
+                        <fieldset class="form-group">
+                            <legend>Time</legend>
+                            <div formArrayName="time" *ngFor="let exp of getMoreTime.controls;let i=index">
+                            <ng-container [formGroupName]="i">
+                            <div class="form-inline float-right mr">
+                                <mat-form-field appearance="outline" class="time">
+                                    <mat-label>Min</mat-label>
+                                    <input matInput id="minTime" class="form-control" type="time"
+                                        formControlName="minTime" name="minTime">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="time">
+                                    <mat-label>Max</mat-label>
+                                    <input matInput id="maxTime" class="form-control" type="time"
+                                        formControlName="maxTime" name="maxTime">
+                                </mat-form-field>
+                                <span class="form-control" *ngIf="time.dirty"
+                                    [class.is-invalid]="time?.get([i]).dirty && time?.get([i])?.errors?.invalidTime"
+                                    [class.is-valid]="time?.get([i]).dirty && !time?.get([i])?.errors?.invalidTime"></span>
+                                    <mat-icon (click)="delMoreTime(i)"  class="del">clear</mat-icon>
+                               
+                            </div>
+
+                            <small *ngIf="time?.get([i]).dirty && time?.get([i])?.errors?.invalidTime">Invalid Time
+                                range</small>                                
+                            </ng-container>
+                        </div>
+                        </fieldset>
+            
+                    <!-- --------------------------------------------------------------------------------------------- -->
+               
+                <p>
+                        <mat-icon *ngIf="time.valid"  (click)="addMoreTime()" class="add" >add_circle_outline</mat-icon>
+
+                 </p>
+            
+                <button mat-flat-button color="primary" [disabled]="!userProfile.valid" type="submit">Primary</button>
+            </form>
+        </mat-card>
+    </div>
+
+</div>

@@ -1,0 +1,16 @@
+@import './theme.scss';
+/* ========================== primary color ====================== */
+$mat-primary-main :map-get($mat-primary,'main' );
+$mat-primary-lighter :map-get($mat-primary,'lighter' );
+$mat-primary-darker :map-get($mat-primary,'darker' );
+$mat-primary-200 :map-get($mat-primary,'200' );
+/* ========================== Accent color ====================== */
+$mat-accent-main :map-get($mat-accent,'main' );
+$mat-accent-lighter :map-get($mat-accent,'lighter' );
+$mat-accent-darker :map-get($mat-accent,'darker' );
+$mat-accent-200 :map-get($mat-accent,'200' );
+/* ========================== warn color ====================== */
+$mat-warn-main :map-get($mat-warn,'main' );
+$mat-warn-lighter :map-get($mat-warn,'lighter' );
+$mat-warn-darker :map-get($mat-warn,'darker' );
+$mat-warn-200 :map-get($mat-warn,'200' );

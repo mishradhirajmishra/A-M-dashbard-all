@@ -1,0 +1,42 @@
+<div class="container" fxLayout="row">
+    <div fxFlex="auto" class="header" fxLayoutAlign="space-around center">
+        <h1 class="mat-display-2">{{title}}</h1>
+    </div>
+</div>
+
+<div class="outer">
+    <div class="container" fxLayout="column" fxLayoutAlign="space-around center">
+        <mat-card>
+            <!-- {{tempForm.value |json}} -->
+            <form #tempForm="ngForm" (ngSubmit)="sendData(tempForm);tempForm.form.reset()">
+                <p>
+                    <mat-form-field class="form-group" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput id="name" class="form-control" type="text" name="username" ngModel>
+                    </mat-form-field>
+                </p>
+                <fieldset class="form-group">
+                    <legend>Image</legend>
+                    <input type="file" class="inputfile" (change)="onSelectChange($event)"  />
+               
+                </fieldset>
+                <!--  -->              
+                <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 /1"
+                [resizeToWidth]="300"
+                [resizeToHeight]="300"
+                (imageCropped)="imageCropped($event)"
+                ></image-cropper>
+                
+                <img [src]="croppedImage" />
+                <!-- ------------- -->
+                <button mat-flat-button color="primary" [disabled]="tempForm.form.invalid">Submit</button>
+
+
+            </form>
+        </mat-card>
+    </div>
+
+</div>
